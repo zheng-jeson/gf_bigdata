@@ -1,0 +1,355 @@
+html,
+body {
+	background-color: #131944;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+#app {
+	width: 100%;
+}
+
+/* 头部 */
+.header {
+	height: 11.25rem;
+	font-size: 3.1rem;
+	text-align: center;
+	color: #fff;
+	background: url(../../img/common/logo2.png) no-repeat;
+	background-size: 100% 100%;
+
+}
+
+.header .cn-title {
+	font-weight: 700;
+	padding-top: 0.625rem;
+}
+
+.header .en-title {
+	font-size: 2.3rem;
+}
+
+.content {
+	display: flex;
+	justify-content: space-around;
+}
+.content .title-name{
+	font-size: 2.5rem;
+	color: #FFFFFF;
+	padding: 2.5rem 0 0 2.5rem;
+}
+
+/* 中间部分-左边*/
+.content .left-content {
+	width: 48%;
+}
+
+/* 左边--第一列 */
+.content .left-content .left-top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 8%;
+	box-sizing: border-box;
+	background: url(../../img/common/border.png) no-repeat;
+	background-size: 100% 100%;
+	padding: 0 0.625rem;
+	text-align: center;
+}
+
+.content .left-content .left-top .left-num {
+	width: 22%;
+	/* 左边第一个取号量字体大小 */
+	font-size: 1.5625rem; 
+	color: #fff;
+	padding-bottom: 1.875rem;
+	color: #4c9bfd;
+}
+
+.content .left-content .left-top .left-num .num {
+	/* 左边第一个字体大小 */
+	font-size: 2.5rem;
+	padding-bottom: 1.875rem;
+	color: #fff;
+}
+.content .left-content .left-top .left-num .num-bottom{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.content .left-content .left-top .left-num .icon {
+	display: inline-block;
+	width: 1rem;
+	height: 2.1875rem;
+	border-radius: 30%;
+	background-color: #FFFFFF;
+	margin-right: 0.625rem;
+}
+
+.content .left-content .chart {
+	font-size: 60px;
+	color: #fff;
+	margin: 0.625rem 1.5625rem;
+}
+
+.content .chart {
+	height: 32.875rem;
+}
+
+.content .left-content .left-two,
+.left-three,
+.left-four,
+.left-five {
+	height: 38rem;
+	margin-top: 1.625rem;
+	box-sizing: border-box;
+	background: url(../../img/common/border.png) no-repeat;
+	background-size: 100% 100%;
+}
+/*本月最排行*/
+.content .left-content .left-four .rank-box{
+	display: flex;
+	text-align: center;
+	flex-wrap: wrap;
+}
+.content .left-content .left-four .rank{
+	width: 50%;
+	height: 6.875rem;
+	margin-top: 1.4375rem;
+}
+.content .left-content .left-four .rank-box .rank-title{
+	/* 最排行数据字体大小 */
+	font-size: 2.1875rem;
+	color: #fff;
+}
+.content .left-content .left-four .rank-box .rank-bottom{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* 办件量字体大小 */
+	font-size: 1.875rem;
+	color: #4c9bfd;
+}
+.content .left-content .left-four .rank-box .rank-bottom img{
+	width:3.125rem;
+	height: 3.125rem;
+}
+
+/* 中间部分-右边 */
+.content .right-content {
+	width: 48%;
+}
+
+/* 右边第一个 */
+.content .right-content .right-top {
+	width: 100%;
+	height: 8%;
+	box-sizing: border-box;
+	background: url(../../img/common/border.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.content .right-content .right-top .filter {
+	/* 右边第一个头部字体大小 */
+	height: 5rem;
+	color: #fff;
+	font-size:1.75rem;
+	padding: 1.25rem 1.875rem 0;
+}
+.content .right-content .right-top .filter .active{
+	color: #fff;
+}
+.content .right-content .right-top .filter span {
+	display: inline-block;
+	width: 20%;
+	text-align: center;
+	color: #4c9bfd;
+}
+
+.content .right-content .right-top .filter i {
+	display: inline-block;
+	width: 0.3125rem;
+	height: 1.5rem;
+	background-color: #6ff2f0;
+}
+.content .right-content .right-top .data {
+	display: flex;
+}
+.content .right-content .right-top .data .item{
+	width: 50%;
+	text-align: center;
+}
+.content .right-content .right-top .data .item p{
+	color: #fff;
+	font-size: 1.875rem;
+}
+.content .right-content .right-top .data .item span{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.content .right-content .right-top .data .item span p{
+	color: #4c9bfd;
+	font-size:1.5625rem;
+	padding-left: 1.25rem;
+}
+.content .right-content .right-top .data .item span .icon-dot{
+	display: inline-block;
+	width:0.625rem;
+	height: 1.25rem;
+	border-radius: 1.875rem;
+	background-color: #6ff2f0;
+	margin-top: 0.3125rem;
+}
+
+.content .right-content .right-two,
+.right-three,
+.right-four,
+.item-rank {
+	height: 38rem;
+	margin-top: 1.625rem;
+	box-sizing: border-box;
+	background: url(../../img/common/border.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+/* 最多跑一次 */
+.content .right-content .right-two .more-one {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 28.125rem;
+}
+
+.content .right-content .right-two .more-one .min-div {
+
+	width: 33%;
+	text-align: center;
+}
+.content .right-content .right-two .more-one .min-div .min-bottom{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.content .right-content .right-two .more-one .min-div img {
+	width: 2.8125rem;
+	height: 2.8125rem;
+}
+
+.content .right-content .right-two .more-one .num {
+	color: #fff;
+	font-size: 3.75rem;
+}
+
+.content .right-content .right-two .more-one .min {
+	font-size: 2.8125rem;
+	color: #4c9bfd;
+	padding-left: 0.3125rem;
+}
+
+.item-rank .inner {
+	display: flex;
+	justify-content: space-between;
+	font-size:2.5rem;
+	color: #fff;
+	padding: 2.5rem 3.125rem 1.25rem;
+}
+
+.item-rank .inner .filter {
+	color: #4c9bfd;
+}
+
+.item-rank .inner .filter i {
+	display: inline-block;
+	width: 0.3125rem;
+	height: 2.5rem;
+	background-color: #6ff2f0;
+}
+
+.item-rank .inner .filter .active {
+	color: #fff;
+}
+
+.item-rank .item-content {
+	margin: 0 2.1875rem;
+}
+
+.item-rank .item-content .head {
+	display: flex;
+	height: 5.5rem;
+	font-size: 2.5rem;
+	text-align: center;
+	line-height: 5.5rem;
+	color: #4c9bfd;
+	background: rgba(143, 143, 143, 0.3);
+
+}
+
+.item-rank .item-content .head .col1 {
+	width: 20%;
+}
+
+.item-rank .item-content .head .col {
+	width: 40%;
+}
+
+.item-rank .item-content .marquee-view {
+	height: 20.25rem;
+	overflow-y: hidden;
+}
+/* 上下滚动的动画 */
+@keyframes scroll-top {
+    0%{}
+    100%{
+        transform: translateY(-50%);
+    }
+}
+.item-rank .item-content .marquee-view .marquee{
+	animation: scroll-top 15s linear infinite;
+}
+.item-rank .item-content .marquee-view .marquee .row {
+	display: flex;
+	justify-content: space-around;
+	height: 6.25rem;
+	font-size:  2.5rem;
+	color: #4c9bfd;
+	line-height: 6.25rem;
+	text-align: center;
+}
+
+.item-rank .item-content .marquee-view .marquee .row .col1 {
+	width: 20%;
+}
+
+.item-rank .item-content .marquee-view .marquee .row .col {
+	width: 40%;
+}
+
+/* 底部 */
+.footer {
+	height: 11.25rem;
+	width: 100%;
+	position: relative;
+	white-space: nowrap;
+	overflow: hidden;
+	margin-top: 0;
+}
+
+.footer div {
+	margin: 0 auto;
+	position: absolute;
+	top: 0;
+}
+
+.footer div span {
+	line-height: 14.25rem;
+	color: #ffffff;
+	float: left;
+	font-size: 3.8rem;
+}

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('排队信息列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>队列标识：</label>
+                                <input type="text" name="queueCode"/>
+                            </li>
+                            <li>
+                                <label>队列名称：</label>
+                                <input type="text" name="queueName"/>
+                            </li>
+                            <li>
+                                <label>排队机标识：</label>
+                                <input type="text" name="machineCode"/>
+                            </li>
+                            <li>
+                                <label>网点标识：</label>
+                                <input type="text" name="siteCode"/>
+                            </li>
+                            <li>
+                                <label>区划代码：</label>
+                                <input type="text" name="areaCode"/>
+                            </li>
+                            <li>
+                                <label>排队号：</label>
+                                <input type="text" name="ticketNumber"/>
+                            </li>
+                            <li>
+                                <label>取号时间：</label>
+                                <input type="text" class="time-input" placeholder="请选择取号时间" name="queueTime"/>
+                            </li>
+                            <li>
+                                <label>叫号时间：</label>
+                                <input type="text" class="time-input" placeholder="请选择叫号时间" name="calledTime"/>
+                            </li>
+                            <li>
+                                <label>等待时长：</label>
+                                <input type="text" name="waitSecondCount"/>
+                            </li>
+                            <li>
+                                <label>离开时间：</label>
+                                <input type="text" class="time-input" placeholder="请选择离开时间" name="leftTime"/>
+                            </li>
+                            <li>
+                                <label>取号渠道：</label>
+                                <input type="text" name="ticketChannel"/>
+                            </li>
+                            <li>
+                                <label>业务办理时长：</label>
+                                <input type="text" name="handleSecondCount"/>
+                            </li>
+                            <li>
+                                <label>评价时间：</label>
+                                <input type="text" class="time-input" placeholder="请选择评价时间" name="evaluateTime"/>
+                            </li>
+                            <li>
+                                <label>窗口编码：</label>
+                                <input type="text" name="windowCode"/>
+                            </li>
+                            <li>
+                                <label>窗口名称：</label>
+                                <input type="text" name="windowName"/>
+                            </li>
+                            <li>
+                                <label>窗口人员：</label>
+                                <input type="text" name="windowEmpName"/>
+                            </li>
+                            <li>
+                                <label>窗口人员工号：</label>
+                                <input type="text" name="windowEmpNum"/>
+                            </li>
+                            <li>
+                                <label>群众姓名：</label>
+                                <input type="text" name="userName"/>
+                            </li>
+                            <li>
+                                <label>群众电话：</label>
+                                <input type="text" name="userMobile"/>
+                            </li>
+                            <li>
+                                <label>群众身份证号：</label>
+                                <input type="text" name="userCardNumber"/>
+                            </li>
+                            <li>
+                                <label>预约时间：</label>
+                                <input type="text" class="time-input" placeholder="请选择预约时间" name="appointmentTime"/>
+                            </li>
+                            <li>
+                                <label>群众地址：</label>
+                                <input type="text" name="userAddress"/>
+                            </li>
+                            <li>
+                                <label>群众头像地址：</label>
+                                <input type="text" name="userPhotoPath"/>
+                            </li>
+                            <li>
+                                <label>同步时间：</label>
+                                <input type="text" class="time-input" placeholder="请选择同步时间" name="synTime"/>
+                            </li>
+                            <li>
+                                <label>同步云服务unid：</label>
+                                <input type="text" name="synUnid"/>
+                            </li>
+                            <li>
+                                <label>同步云服务url：</label>
+                                <input type="text" name="synUrl"/>
+                            </li>
+                            <li>
+                                <label>全网唯一标识：</label>
+                                <input type="text" name="guid"/>
+                            </li>
+                            <li>
+                                <label>部门code：</label>
+                                <input type="text" name="deptCode"/>
+                            </li>
+                            <li>
+                                <label>部门名称：</label>
+                                <input type="text" name="deptName"/>
+                            </li>
+                            <li>
+                                <label>办理人员unid：</label>
+                                <input type="text" name="windowEmpUnid"/>
+                            </li>
+                            <li>
+                                <label>预约标识：</label>
+                                <input type="text" name="isApp"/>
+                            </li>
+                            <li>
+                                <label>排队日期标识，距2020-01-01天数,增加查询速度索引用：</label>
+                                <input type="text" name="queueTimeNum"/>
+                            </li>
+                            <li>
+                                <label>窗口号：</label>
+                                <input type="text" name="windowNum"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="business:queueTicketInfo:add">
+                    <i class="fa fa-plus"></i> 添加
+                </a>
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="business:queueTicketInfo:edit">
+                    <i class="fa fa-edit"></i> 修改
+                </a>
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="business:queueTicketInfo:remove">
+                    <i class="fa fa-remove"></i> 删除
+                </a>
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="business:queueTicketInfo:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('business:queueTicketInfo:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('business:queueTicketInfo:remove')}]];
+        var prefix = ctx + "business/queueTicketInfo";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "排队信息",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'unid',
+                    title: 'unid',
+                    visible: false
+                },
+                {
+                    field: 'queueCode',
+                    title: '队列标识'
+                },
+                {
+                    field: 'queueName',
+                    title: '队列名称'
+                },
+                {
+                    field: 'machineCode',
+                    title: '排队机标识'
+                },
+                {
+                    field: 'siteCode',
+                    title: '网点标识'
+                },
+                {
+                    field: 'areaCode',
+                    title: '区划代码'
+                },
+                {
+                    field: 'ticketNumber',
+                    title: '排队号'
+                },
+                {
+                    field: 'queueTime',
+                    title: '取号时间'
+                },
+                {
+                    field: 'calledTime',
+                    title: '叫号时间'
+                },
+                {
+                    field: 'waitSecondCount',
+                    title: '等待时长'
+                },
+                {
+                    field: 'leftTime',
+                    title: '离开时间'
+                },
+                {
+                    field: 'ticketChannel',
+                    title: '取号渠道'
+                },
+                {
+                    field: 'handleSecondCount',
+                    title: '业务办理时长'
+                },
+                {
+                    field: 'evaluateStatus',
+                    title: '评价状态'
+                },
+                {
+                    field: 'evaluateTime',
+                    title: '评价时间'
+                },
+                {
+                    field: 'windowCode',
+                    title: '窗口编码'
+                },
+                {
+                    field: 'windowName',
+                    title: '窗口名称'
+                },
+                {
+                    field: 'windowEmpName',
+                    title: '窗口人员'
+                },
+                {
+                    field: 'windowEmpNum',
+                    title: '窗口人员工号'
+                },
+                {
+                    field: 'ticketStatus',
+                    title: '排队信息状态'
+                },
+                {
+                    field: 'userName',
+                    title: '群众姓名'
+                },
+                {
+                    field: 'userMobile',
+                    title: '群众电话'
+                },
+                {
+                    field: 'userCardNumber',
+                    title: '群众身份证号'
+                },
+                {
+                    field: 'appointmentTime',
+                    title: '预约时间'
+                },
+                {
+                    field: 'userAddress',
+                    title: '群众地址'
+                },
+                {
+                    field: 'userSex',
+                    title: '群众性别'
+                },
+                {
+                    field: 'userPhotoPath',
+                    title: '群众头像地址'
+                },
+                {
+                    field: 'synStatus',
+                    title: '同步状态'
+                },
+                {
+                    field: 'synTime',
+                    title: '同步时间'
+                },
+                {
+                    field: 'synUnid',
+                    title: '同步云服务unid'
+                },
+                {
+                    field: 'synUrl',
+                    title: '同步云服务url'
+                },
+                {
+                    field: 'guid',
+                    title: '全网唯一标识'
+                },
+                {
+                    field: 'calledStatus',
+                    title: '叫号标识'
+                },
+                {
+                    field: 'leftStatus',
+                    title: '离开标识'
+                },
+                {
+                    field: 'deptCode',
+                    title: '部门code'
+                },
+                {
+                    field: 'deptName',
+                    title: '部门名称'
+                },
+                {
+                    field: 'windowEmpUnid',
+                    title: '办理人员unid'
+                },
+                {
+                    field: 'isApp',
+                    title: '预约标识'
+                },
+                {
+                    field: 'queueTimeNum',
+                    title: '排队日期标识，距2020-01-01天数,增加查询速度索引用'
+                },
+                {
+                    field: 'windowNum',
+                    title: '窗口号'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.unid + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.unid + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

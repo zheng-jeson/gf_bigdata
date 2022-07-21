@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增排队信息')" />
+    <th:block th:include="include :: datetimepicker-css" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-queueTicketInfo-add">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">队列标识：</label>
+                <div class="col-sm-8">
+                    <input name="queueCode" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">队列名称：</label>
+                <div class="col-sm-8">
+                    <input name="queueName" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">排队机标识：</label>
+                <div class="col-sm-8">
+                    <input name="machineCode" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">网点标识：</label>
+                <div class="col-sm-8">
+                    <input name="siteCode" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">区划代码：</label>
+                <div class="col-sm-8">
+                    <input name="areaCode" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">排队号：</label>
+                <div class="col-sm-8">
+                    <input name="ticketNumber" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">取号时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="queueTime" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">叫号时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="calledTime" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">等待时长：</label>
+                <div class="col-sm-8">
+                    <input name="waitSecondCount" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">离开时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="leftTime" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">取号渠道：</label>
+                <div class="col-sm-8">
+                    <input name="ticketChannel" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">业务办理时长：</label>
+                <div class="col-sm-8">
+                    <input name="handleSecondCount" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">评价时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="evaluateTime" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">窗口编码：</label>
+                <div class="col-sm-8">
+                    <input name="windowCode" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">窗口名称：</label>
+                <div class="col-sm-8">
+                    <input name="windowName" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">窗口人员：</label>
+                <div class="col-sm-8">
+                    <input name="windowEmpName" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">窗口人员工号：</label>
+                <div class="col-sm-8">
+                    <input name="windowEmpNum" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">群众姓名：</label>
+                <div class="col-sm-8">
+                    <input name="userName" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">群众电话：</label>
+                <div class="col-sm-8">
+                    <input name="userMobile" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">群众身份证号：</label>
+                <div class="col-sm-8">
+                    <input name="userCardNumber" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">预约时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="appointmentTime" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">群众地址：</label>
+                <div class="col-sm-8">
+                    <input name="userAddress" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">群众头像地址：</label>
+                <div class="col-sm-8">
+                    <input name="userPhotoPath" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">同步时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="synTime" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">同步云服务unid：</label>
+                <div class="col-sm-8">
+                    <input name="synUnid" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">同步云服务url：</label>
+                <div class="col-sm-8">
+                    <input name="synUrl" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">全网唯一标识：</label>
+                <div class="col-sm-8">
+                    <input name="guid" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">部门code：</label>
+                <div class="col-sm-8">
+                    <input name="deptCode" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">部门名称：</label>
+                <div class="col-sm-8">
+                    <input name="deptName" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">办理人员unid：</label>
+                <div class="col-sm-8">
+                    <input name="windowEmpUnid" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">预约标识：</label>
+                <div class="col-sm-8">
+                    <input name="isApp" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">排队日期标识，距2020-01-01天数,增加查询速度索引用：</label>
+                <div class="col-sm-8">
+                    <input name="queueTimeNum" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">窗口号：</label>
+                <div class="col-sm-8">
+                    <input name="windowNum" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: datetimepicker-js" />
+    <script th:inline="javascript">
+        var prefix = ctx + "business/queueTicketInfo"
+        $("#form-queueTicketInfo-add").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/add", $('#form-queueTicketInfo-add').serialize());
+            }
+        }
+
+        $("input[name='queueTime']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+
+        $("input[name='calledTime']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+
+        $("input[name='leftTime']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+
+        $("input[name='evaluateTime']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+
+        $("input[name='appointmentTime']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+
+        $("input[name='synTime']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.business.hallSite.mapper.HallSiteMapper">
+    
+    <resultMap type="HallSite" id="HallSiteResult">
+        <result property="unid"    column="unid"    />
+        <result property="siteName"    column="site_name"    />
+        <result property="siteCode"    column="site_code"    />
+        <result property="sitePhone"    column="site_phone"    />
+        <result property="siteAddress"    column="site_address"    />
+        <result property="siteCoordinateY"    column="site_coordinate_y"    />
+        <result property="siteCoordinateX"    column="site_coordinate_x"    />
+        <result property="areaCode"    column="area_code"    />
+        <result property="isSendMessage"    column="is_send_message"    />
+        <result property="remark"    column="remark"    />
+        <result property="siteAccepttime"    column="site_accepttime"    />
+        <result property="siteIntroduction"    column="site_introduction"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="modifyTime"    column="modify_time"    />
+        <result property="isDel"    column="is_del"    />
+        <result property="sourceFlag"    column="source_flag"    />
+    </resultMap>
+
+    <sql id="selectHallSiteVo">
+        select unid, site_name, site_code, site_phone, site_address, site_coordinate_y, site_coordinate_x, area_code, is_send_message, remark, site_accepttime, site_introduction, create_time, modify_time, is_del, source_flag from buss_hall_site
+    </sql>
+
+    <select id="selectHallSiteList" parameterType="HallSite" resultMap="HallSiteResult">
+        <include refid="selectHallSiteVo"/>
+        <where>  
+            <if test="siteName != null  and siteName != ''"> and site_name like concat('%', #{siteName}, '%')</if>
+            <if test="siteCode != null  and siteCode != ''"> and site_code = #{siteCode}</if>
+            <if test="sitePhone != null  and sitePhone != ''"> and site_phone = #{sitePhone}</if>
+            <if test="siteAddress != null  and siteAddress != ''"> and site_address = #{siteAddress}</if>
+            <if test="siteCoordinateY != null  and siteCoordinateY != ''"> and site_coordinate_y = #{siteCoordinateY}</if>
+            <if test="siteCoordinateX != null  and siteCoordinateX != ''"> and site_coordinate_x = #{siteCoordinateX}</if>
+            <if test="areaCode != null  and areaCode != ''"> and area_code = #{areaCode}</if>
+            <if test="isSendMessage != null "> and is_send_message = #{isSendMessage}</if>
+            <if test="siteAccepttime != null  and siteAccepttime != ''"> and site_accepttime = #{siteAccepttime}</if>
+            <if test="siteIntroduction != null  and siteIntroduction != ''"> and site_introduction = #{siteIntroduction}</if>
+            <if test="modifyTime != null "> and modify_time = #{modifyTime}</if>
+            <if test="isDel != null "> and is_del = #{isDel}</if>
+            <if test="sourceFlag != null  and sourceFlag != ''"> and source_flag = #{sourceFlag}</if>
+        </where>
+    </select>
+    
+    <select id="selectHallSiteByUnid" parameterType="String" resultMap="HallSiteResult">
+        <include refid="selectHallSiteVo"/>
+        where unid = #{unid}
+    </select>
+        
+    <insert id="insertHallSite" parameterType="HallSite">
+        insert into buss_hall_site
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="unid != null">unid,</if>
+            <if test="siteName != null">site_name,</if>
+            <if test="siteCode != null">site_code,</if>
+            <if test="sitePhone != null">site_phone,</if>
+            <if test="siteAddress != null">site_address,</if>
+            <if test="siteCoordinateY != null">site_coordinate_y,</if>
+            <if test="siteCoordinateX != null">site_coordinate_x,</if>
+            <if test="areaCode != null">area_code,</if>
+            <if test="isSendMessage != null">is_send_message,</if>
+            <if test="remark != null">remark,</if>
+            <if test="siteAccepttime != null">site_accepttime,</if>
+            <if test="siteIntroduction != null">site_introduction,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="modifyTime != null">modify_time,</if>
+            <if test="isDel != null">is_del,</if>
+            <if test="sourceFlag != null">source_flag,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="unid != null">#{unid},</if>
+            <if test="siteName != null">#{siteName},</if>
+            <if test="siteCode != null">#{siteCode},</if>
+            <if test="sitePhone != null">#{sitePhone},</if>
+            <if test="siteAddress != null">#{siteAddress},</if>
+            <if test="siteCoordinateY != null">#{siteCoordinateY},</if>
+            <if test="siteCoordinateX != null">#{siteCoordinateX},</if>
+            <if test="areaCode != null">#{areaCode},</if>
+            <if test="isSendMessage != null">#{isSendMessage},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="siteAccepttime != null">#{siteAccepttime},</if>
+            <if test="siteIntroduction != null">#{siteIntroduction},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="modifyTime != null">#{modifyTime},</if>
+            <if test="isDel != null">#{isDel},</if>
+            <if test="sourceFlag != null">#{sourceFlag},</if>
+         </trim>
+    </insert>
+
+    <update id="updateHallSite" parameterType="HallSite">
+        update buss_hall_site
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="siteName != null">site_name = #{siteName},</if>
+            <if test="siteCode != null">site_code = #{siteCode},</if>
+            <if test="sitePhone != null">site_phone = #{sitePhone},</if>
+            <if test="siteAddress != null">site_address = #{siteAddress},</if>
+            <if test="siteCoordinateY != null">site_coordinate_y = #{siteCoordinateY},</if>
+            <if test="siteCoordinateX != null">site_coordinate_x = #{siteCoordinateX},</if>
+            <if test="areaCode != null">area_code = #{areaCode},</if>
+            <if test="isSendMessage != null">is_send_message = #{isSendMessage},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="siteAccepttime != null">site_accepttime = #{siteAccepttime},</if>
+            <if test="siteIntroduction != null">site_introduction = #{siteIntroduction},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="modifyTime != null">modify_time = #{modifyTime},</if>
+            <if test="isDel != null">is_del = #{isDel},</if>
+            <if test="sourceFlag != null">source_flag = #{sourceFlag},</if>
+        </trim>
+        where unid = #{unid}
+    </update>
+
+    <delete id="deleteHallSiteByUnid" parameterType="String">
+        delete from buss_hall_site where unid = #{unid}
+    </delete>
+
+    <delete id="deleteHallSiteByUnids" parameterType="String">
+        delete from buss_hall_site where unid in 
+        <foreach item="unid" collection="array" open="(" separator="," close=")">
+            #{unid}
+        </foreach>
+    </delete>
+
+</mapper>

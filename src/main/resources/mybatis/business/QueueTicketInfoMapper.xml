@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.business.queueTicketInfo.mapper.QueueTicketInfoMapper">
+    
+    <resultMap type="QueueTicketInfo" id="QueueTicketInfoResult">
+        <result property="unid"    column="unid"    />
+        <result property="queueCode"    column="queue_code"    />
+        <result property="queueName"    column="queue_name"    />
+        <result property="machineCode"    column="machine_code"    />
+        <result property="siteCode"    column="site_code"    />
+        <result property="areaCode"    column="area_code"    />
+        <result property="ticketNumber"    column="ticket_number"    />
+        <result property="queueTime"    column="queue_time"    />
+        <result property="calledTime"    column="called_time"    />
+        <result property="waitSecondCount"    column="wait_second_count"    />
+        <result property="leftTime"    column="left_time"    />
+        <result property="ticketChannel"    column="ticket_channel"    />
+        <result property="handleSecondCount"    column="handle_second_count"    />
+        <result property="evaluateStatus"    column="evaluate_status"    />
+        <result property="evaluateTime"    column="evaluate_time"    />
+        <result property="windowCode"    column="window_code"    />
+        <result property="windowName"    column="window_name"    />
+        <result property="windowEmpName"    column="window_emp_name"    />
+        <result property="windowEmpNum"    column="window_emp_num"    />
+        <result property="ticketStatus"    column="ticket_status"    />
+        <result property="userName"    column="user_name"    />
+        <result property="userMobile"    column="user_mobile"    />
+        <result property="userCardNumber"    column="user_card_number"    />
+        <result property="appointmentTime"    column="appointment_time"    />
+        <result property="userAddress"    column="user_address"    />
+        <result property="userSex"    column="user_sex"    />
+        <result property="userPhotoPath"    column="user_photo_path"    />
+        <result property="synStatus"    column="syn_status"    />
+        <result property="synTime"    column="syn_time"    />
+        <result property="synUnid"    column="syn_unid"    />
+        <result property="synUrl"    column="syn_url"    />
+        <result property="guid"    column="guid"    />
+        <result property="calledStatus"    column="called_status"    />
+        <result property="leftStatus"    column="left_status"    />
+        <result property="deptCode"    column="dept_code"    />
+        <result property="deptName"    column="dept_name"    />
+        <result property="windowEmpUnid"    column="window_emp_unid"    />
+        <result property="isApp"    column="is_app"    />
+        <result property="queueTimeNum"    column="queue_time_num"    />
+        <result property="windowNum"    column="window_num"    />
+    </resultMap>
+
+    <sql id="selectQueueTicketInfoVo">
+        select unid, queue_code, queue_name, machine_code, site_code, area_code, ticket_number, queue_time, called_time, wait_second_count, left_time, ticket_channel, handle_second_count, evaluate_status, evaluate_time, window_code, window_name, window_emp_name, window_emp_num, ticket_status, user_name, user_mobile, user_card_number, appointment_time, user_address, user_sex, user_photo_path, syn_status, syn_time, syn_unid, syn_url, guid, called_status, left_status, dept_code, dept_name, window_emp_unid, is_app, queue_time_num, window_num from queue_ticket_info
+    </sql>
+
+    <select id="selectQueueTicketInfoList" parameterType="QueueTicketInfo" resultMap="QueueTicketInfoResult">
+        <include refid="selectQueueTicketInfoVo"/>
+        <where>  
+            <if test="queueCode != null  and queueCode != ''"> and queue_code = #{queueCode}</if>
+            <if test="queueName != null  and queueName != ''"> and queue_name like concat('%', #{queueName}, '%')</if>
+            <if test="machineCode != null  and machineCode != ''"> and machine_code = #{machineCode}</if>
+            <if test="siteCode != null  and siteCode != ''"> and site_code = #{siteCode}</if>
+            <if test="areaCode != null  and areaCode != ''"> and area_code = #{areaCode}</if>
+            <if test="ticketNumber != null  and ticketNumber != ''"> and ticket_number = #{ticketNumber}</if>
+            <if test="queueTime != null "> and queue_time = #{queueTime}</if>
+            <if test="calledTime != null "> and called_time = #{calledTime}</if>
+            <if test="waitSecondCount != null "> and wait_second_count = #{waitSecondCount}</if>
+            <if test="leftTime != null "> and left_time = #{leftTime}</if>
+            <if test="ticketChannel != null  and ticketChannel != ''"> and ticket_channel = #{ticketChannel}</if>
+            <if test="handleSecondCount != null "> and handle_second_count = #{handleSecondCount}</if>
+            <if test="evaluateStatus != null "> and evaluate_status = #{evaluateStatus}</if>
+            <if test="evaluateTime != null "> and evaluate_time = #{evaluateTime}</if>
+            <if test="windowCode != null  and windowCode != ''"> and window_code = #{windowCode}</if>
+            <if test="windowName != null  and windowName != ''"> and window_name like concat('%', #{windowName}, '%')</if>
+            <if test="windowEmpName != null  and windowEmpName != ''"> and window_emp_name like concat('%', #{windowEmpName}, '%')</if>
+            <if test="windowEmpNum != null  and windowEmpNum != ''"> and window_emp_num = #{windowEmpNum}</if>
+            <if test="ticketStatus != null "> and ticket_status = #{ticketStatus}</if>
+            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+            <if test="userMobile != null  and userMobile != ''"> and user_mobile = #{userMobile}</if>
+            <if test="userCardNumber != null  and userCardNumber != ''"> and user_card_number = #{userCardNumber}</if>
+            <if test="appointmentTime != null "> and appointment_time = #{appointmentTime}</if>
+            <if test="userAddress != null  and userAddress != ''"> and user_address = #{userAddress}</if>
+            <if test="userSex != null  and userSex != ''"> and user_sex = #{userSex}</if>
+            <if test="userPhotoPath != null  and userPhotoPath != ''"> and user_photo_path = #{userPhotoPath}</if>
+            <if test="synStatus != null "> and syn_status = #{synStatus}</if>
+            <if test="synTime != null "> and syn_time = #{synTime}</if>
+            <if test="synUnid != null  and synUnid != ''"> and syn_unid = #{synUnid}</if>
+            <if test="synUrl != null  and synUrl != ''"> and syn_url = #{synUrl}</if>
+            <if test="guid != null  and guid != ''"> and guid = #{guid}</if>
+            <if test="calledStatus != null "> and called_status = #{calledStatus}</if>
+            <if test="leftStatus != null "> and left_status = #{leftStatus}</if>
+            <if test="deptCode != null  and deptCode != ''"> and dept_code = #{deptCode}</if>
+            <if test="deptName != null  and deptName != ''"> and dept_name like concat('%', #{deptName}, '%')</if>
+            <if test="windowEmpUnid != null  and windowEmpUnid != ''"> and window_emp_unid = #{windowEmpUnid}</if>
+            <if test="isApp != null "> and is_app = #{isApp}</if>
+            <if test="queueTimeNum != null "> and queue_time_num = #{queueTimeNum}</if>
+            <if test="windowNum != null  and windowNum != ''"> and window_num = #{windowNum}</if>
+        </where>
+    </select>
+    
+    <select id="selectQueueTicketInfoByUnid" parameterType="String" resultMap="QueueTicketInfoResult">
+        <include refid="selectQueueTicketInfoVo"/>
+        where unid = #{unid}
+    </select>
+    <select id="countTakeNumber" resultType="java.lang.Integer">
+        SELECT count(*) FROM queue_ticket_info t
+        WHERE t.queue_time IS NOT NULL
+        <if test="map.startTime != null and map.startTime != ''">
+            AND t.queue_time >= #{map.startTime}
+        </if>
+        <if test="map.endTime != null and map.endTime != ''">
+            AND  #{map.endTime} >=t.queue_time
+        </if>
+
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND t.site_code=#{map.siteCode}
+        </if>
+    </select>
+    <select id="countCallNumber" resultType="java.lang.Integer">
+        SELECT count(*) FROM queue_ticket_info t
+        WHERE t.queue_time IS NOT NULL
+        AND t.called_time IS NOT NULL
+
+        <if test="map.startTime != null and map.startTime != ''">
+            AND t.called_time >= #{map.startTime}
+        </if>
+        <if test="map.endTime != null and map.endTime != ''">
+            AND  #{map.endTime} >=t.called_time
+        </if>
+
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND t.site_code=#{map.siteCode}
+        </if>
+    </select>
+    <select id="findCurrentTakedCount" resultType="java.lang.Integer">
+        SELECT count(*) FROM queue_ticket_info t
+        WHERE t.queue_time IS NOT NULL
+        AND t.queue_time between curdate() and date_sub(curdate(),interval-1 day)
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND t.site_code=#{map.siteCode}
+        </if>
+        <if test="map.windowCode != null and map.windowCode != ''">
+            AND t.window_code=#{map.windowCode}
+        </if>
+    </select>
+    <select id="findCurrentCalledCount" resultType="java.lang.Integer">
+        SELECT count(*) FROM queue_ticket_info t
+        WHERE t.queue_time IS NOT NULL
+        AND t.called_time IS NOT NULL
+        AND t.called_time between curdate() and date_sub(curdate(),interval-1 day)
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND t.site_code=#{map.siteCode}
+        </if>
+        <if test="map.windowCode != null and map.windowCode != ''">
+            AND t.window_code=#{map.windowCode}
+        </if>
+    </select>
+    <select id="findCurrentWaitCount" resultType="java.lang.Integer">
+        SELECT count(*) FROM queue_ticket_info t
+        WHERE t.queue_time IS NOT NULL
+        AND t.called_time IS NULL
+        AND t.queue_time between curdate() and date_sub(curdate(),interval-1 day)
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND t.site_code=#{map.siteCode}
+        </if>
+        <if test="map.windowCode != null and map.windowCode != ''">
+            AND t.window_code=#{map.windowCode}
+        </if>
+        <if test="map.queueCode != null and map.queueCode != ''">
+            AND t.queue_code=#{map.queueCode}
+        </if>
+    </select>
+
+    <select id="findCurrentAvgWaitTime" resultType="java.lang.Integer">
+        SELECT IFNULL(ROUND(AVG(s)/60),0) as avgWaitTime FROM (
+        SELECT TIMESTAMPDIFF(SECOND,q.queue_time,q.called_time) AS s,q.queue_time,q.called_time,q.unid
+        FROM queue_ticket_info AS q
+        WHERE 1=1
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND q.site_code=#{map.siteCode}
+        </if>
+        <if test="map.windowCode != null and map.windowCode != ''">
+            AND t.window_code=#{map.windowCode}
+        </if>
+        AND TO_DAYS(q.queue_time) = TO_DAYS(NOW())
+        AND TO_DAYS(q.called_time) = TO_DAYS(NOW())
+        ) AS n
+    </select>
+
+    <select id="findCurrentAvgHandleTime" resultType="java.lang.Integer">
+        SELECT IFNULL(ROUND(AVG(s)/60),0) as avgHandleTime FROM (
+        SELECT TIMESTAMPDIFF(SECOND,q.called_time,q.left_time) AS s,q.called_time,q.left_time,q.unid
+        FROM queue_ticket_info AS q
+        WHERE 1=1
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND q.site_code=#{map.siteCode}
+        </if>
+        <if test="map.windowCode != null and map.windowCode != ''">
+            AND t.window_code=#{map.windowCode}
+        </if>
+        AND TO_DAYS(q.queue_time) = TO_DAYS(NOW())
+        AND TO_DAYS(q.called_time) = TO_DAYS(NOW())
+        ) AS n
+    </select>
+
+    <select id="findCurrentMaxWaitTime" resultType="java.lang.Integer">
+        select IFNULL(max(s),0) AS maxWaitTime from (
+        SELECT TIMESTAMPDIFF(MINUTE,t.queue_time,t.called_time) AS s
+        FROM queue_ticket_info t
+        WHERE t.queue_time IS NOT NULL
+        AND t.called_time IS NOT NULL
+        AND TO_DAYS(t.queue_time) = TO_DAYS(NOW())
+        AND TO_DAYS(t.called_time) = TO_DAYS(NOW())
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND t.site_code=#{map.siteCode}
+        </if>
+        <if test="map.windowCode != null and map.windowCode != ''">
+            AND t.window_code=#{map.windowCode}
+        </if>
+
+        ) t
+    </select>
+    <select id="findCurrentMaxHandleTime" resultType="java.lang.Integer">
+        select IFNULL(max(s),0) AS maxHandleTime from (
+        SELECT TIMESTAMPDIFF(MINUTE,t.called_time,t.left_time) AS s
+        FROM queue_ticket_info t
+        WHERE t.called_time IS NOT NULL
+        AND t.left_time IS NOT NULL
+        AND TO_DAYS(t.called_time) = TO_DAYS(NOW())
+        AND TO_DAYS(t.left_time) = TO_DAYS(NOW())
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND t.site_code=#{map.siteCode}
+        </if>
+        <if test="map.windowCode != null and map.windowCode != ''">
+            AND t.window_code=#{map.windowCode}
+        </if>
+        ) t
+    </select>
+    <select id="findCurrentMinWaitTime" resultType="java.lang.Integer">
+        select IFNULL(min(s),0) AS minWaitTime from (
+        SELECT TIMESTAMPDIFF(MINUTE,t.queue_time,t.called_time) AS s
+        FROM queue_ticket_info t
+        WHERE t.queue_time IS NOT NULL
+        AND t.called_time IS NOT NULL
+        AND TO_DAYS(t.queue_time) = TO_DAYS(NOW())
+        AND TO_DAYS(t.called_time) = TO_DAYS(NOW())
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND t.site_code=#{map.siteCode}
+        </if>
+        <if test="map.windowCode != null and map.windowCode != ''">
+            AND t.window_code=#{map.windowCode}
+        </if>
+        ) t
+    </select>
+    <select id="findCurrentMinHandleTime" resultType="java.lang.Integer">
+        select IFNULL(min(s),0) AS minHandleTime from (
+        SELECT TIMESTAMPDIFF(MINUTE,t.called_time,t.left_time) AS s
+        FROM queue_ticket_info t
+        WHERE t.called_time IS NOT NULL
+        AND t.left_time IS NOT NULL
+        AND TO_DAYS(t.called_time) = TO_DAYS(NOW())
+        AND TO_DAYS(t.left_time) = TO_DAYS(NOW())
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND t.site_code=#{map.siteCode}
+        </if>
+        <if test="map.windowCode != null and map.windowCode != ''">
+            AND t.window_code=#{map.windowCode}
+        </if>
+        ) t
+    </select>
+    <select id="windowRank" resultType="java.util.Map">
+        SELECT  t.window_num, t.window_name ,count(*) as handleNum FROM queue_ticket_info t
+        WHERE t.queue_time IS NOT NULL
+        AND t.window_num IS NOT NULL
+        AND t.queue_time between curdate() and date_sub(curdate(),interval-1 day)
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND t.site_code=#{map.siteCode}
+        </if>
+        GROUP BY t.window_num
+        ORDER BY handleNum desc
+    </select>
+    <select id="selectProcessTimeMoreThanThirtyMinute" resultType="java.lang.Integer">
+        SELECT COUNT(t.time) FROM
+            (SELECT TIMESTAMPDIFF(MINUTE, called_time, left_time) time FROM queue_ticket_info
+            where left_time IS NOT NULL
+            <if test="map.siteCode != null and map.siteCode != ''">
+                AND site_code=#{map.siteCode}
+            </if>
+            ) t
+        WHERE t.time>30
+    </select>
+    <select id="selectProcessTimeLessThanThreeMinute" resultType="java.lang.Integer">
+        SELECT COUNT(t.time) FROM
+        (SELECT TIMESTAMPDIFF(MINUTE, called_time, left_time) time FROM queue_ticket_info
+        where left_time IS NOT NULL
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND site_code=#{map.siteCode}
+        </if>
+        ) t
+        WHERE 3>t.time
+    </select>
+    <select id="selectProcessTimeBetweenThreeAndThirtyMinute" resultType="java.lang.Integer">
+        SELECT COUNT(t.time) FROM
+        (SELECT TIMESTAMPDIFF(MINUTE, called_time, left_time) time FROM queue_ticket_info
+        where left_time IS NOT NULL
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND site_code=#{map.siteCode}
+        </if>
+        ) t
+        WHERE 3>t.time or t.time>30
+    </select>
+    <select id="selectAgeData" resultType="java.util.Map">
+        SELECT DATE_FORMAT(NOW(), '%Y') - SUBSTRING( user_card_number,7,4) AS age,count(*) as num
+        FROM queue_ticket_info	WHERE user_card_number is not null
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND site_code=#{map.siteCode}
+        </if>
+        GROUP BY age
+        HAVING age>0 and 200>age
+    </select>
+    <select id="selectSexData" resultType="java.util.Map">
+        SELECT user_sex sex,count(*) num
+        FROM queue_ticket_info
+        WHERE user_sex is not null
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND site_code=#{map.siteCode}
+        </if>
+        GROUP BY user_sex
+    </select>
+    <select id="selectQuYuHandle" resultType="java.util.Map">
+        SELECT machine_code, COUNT(*)AS num FROM queue_ticket_info WHERE 1=1
+        <if test="map.startTime != null and map.startTime != ''">
+            AND called_time >= #{map.startTime}
+        </if>
+        <if test="map.endTime != null and map.endTime != ''">
+            AND  #{map.endTime} >=called_time
+        </if>
+        GROUP BY machine_code ORDER BY num DESC
+    </select>
+    <select id="selectWindowHandle" resultType="java.util.Map">
+        SELECT window_num, COUNT(*)AS num FROM queue_ticket_info WHERE 1=1
+        <if test="map.startTime != null and map.startTime != ''">
+            AND called_time >= #{map.startTime}
+        </if>
+        <if test="map.endTime != null and map.endTime != ''">
+            AND  #{map.endTime} >=called_time
+        </if>
+        GROUP BY window_num ORDER BY num DESC
+    </select>
+    <select id="selectAvgWorkDay" resultType="java.util.Map">
+        SELECT process_num ,date_format(create_time,'%W') as week FROM
+            (SELECT sum(num) as process_num, create_time from
+                (SELECT count(*) as num ,DATE_FORMAT(queue_time,'%Y-%m-%d') as create_time FROM queue_ticket_info
+                 WHERE queue_time is not NULL
+                    <if test="map.siteCode != null and map.siteCode != ''">
+                        AND site_code=#{map.siteCode}
+                    </if>
+                    <if test="map.startTime != null and map.startTime != ''">
+                        AND queue_time >= #{map.startTime}
+                    </if>
+                    <if test="map.endTime != null and map.endTime != ''">
+                        AND  #{map.endTime} >=queue_time
+                    </if>
+                    GROUP BY queue_time) t
+             GROUP BY create_time) s
+        GROUP BY week
+    </select>
+    <select id="queueRank" resultType="java.util.Map">
+        SELECT t.queue_name ,count(*) as num FROM queue_ticket_info t
+        WHERE t.queue_time IS NOT NULL
+          AND t.queue_time between curdate() and date_sub(curdate(),interval-1 day)
+        <if test="map.siteCode != null and map.siteCode != ''">
+            AND t.site_code=#{map.siteCode}
+        </if>
+        GROUP BY t.queue_name
+        ORDER BY num desc
+    </select>
+
+
+    <insert id="insertQueueTicketInfo" parameterType="QueueTicketInfo">
+        insert into queue_ticket_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="unid != null">unid,</if>
+            <if test="queueCode != null">queue_code,</if>
+            <if test="queueName != null">queue_name,</if>
+            <if test="machineCode != null">machine_code,</if>
+            <if test="siteCode != null">site_code,</if>
+            <if test="areaCode != null">area_code,</if>
+            <if test="ticketNumber != null">ticket_number,</if>
+            <if test="queueTime != null">queue_time,</if>
+            <if test="calledTime != null">called_time,</if>
+            <if test="waitSecondCount != null">wait_second_count,</if>
+            <if test="leftTime != null">left_time,</if>
+            <if test="ticketChannel != null">ticket_channel,</if>
+            <if test="handleSecondCount != null">handle_second_count,</if>
+            <if test="evaluateStatus != null">evaluate_status,</if>
+            <if test="evaluateTime != null">evaluate_time,</if>
+            <if test="windowCode != null">window_code,</if>
+            <if test="windowName != null">window_name,</if>
+            <if test="windowEmpName != null">window_emp_name,</if>
+            <if test="windowEmpNum != null">window_emp_num,</if>
+            <if test="ticketStatus != null">ticket_status,</if>
+            <if test="userName != null">user_name,</if>
+            <if test="userMobile != null">user_mobile,</if>
+            <if test="userCardNumber != null">user_card_number,</if>
+            <if test="appointmentTime != null">appointment_time,</if>
+            <if test="userAddress != null">user_address,</if>
+            <if test="userSex != null">user_sex,</if>
+            <if test="userPhotoPath != null">user_photo_path,</if>
+            <if test="synStatus != null">syn_status,</if>
+            <if test="synTime != null">syn_time,</if>
+            <if test="synUnid != null">syn_unid,</if>
+            <if test="synUrl != null">syn_url,</if>
+            <if test="guid != null">guid,</if>
+            <if test="calledStatus != null">called_status,</if>
+            <if test="leftStatus != null">left_status,</if>
+            <if test="deptCode != null">dept_code,</if>
+            <if test="deptName != null">dept_name,</if>
+            <if test="windowEmpUnid != null">window_emp_unid,</if>
+            <if test="isApp != null">is_app,</if>
+            <if test="queueTimeNum != null">queue_time_num,</if>
+            <if test="windowNum != null">window_num,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="unid != null">#{unid},</if>
+            <if test="queueCode != null">#{queueCode},</if>
+            <if test="queueName != null">#{queueName},</if>
+            <if test="machineCode != null">#{machineCode},</if>
+            <if test="siteCode != null">#{siteCode},</if>
+            <if test="areaCode != null">#{areaCode},</if>
+            <if test="ticketNumber != null">#{ticketNumber},</if>
+            <if test="queueTime != null">#{queueTime},</if>
+            <if test="calledTime != null">#{calledTime},</if>
+            <if test="waitSecondCount != null">#{waitSecondCount},</if>
+            <if test="leftTime != null">#{leftTime},</if>
+            <if test="ticketChannel != null">#{ticketChannel},</if>
+            <if test="handleSecondCount != null">#{handleSecondCount},</if>
+            <if test="evaluateStatus != null">#{evaluateStatus},</if>
+            <if test="evaluateTime != null">#{evaluateTime},</if>
+            <if test="windowCode != null">#{windowCode},</if>
+            <if test="windowName != null">#{windowName},</if>
+            <if test="windowEmpName != null">#{windowEmpName},</if>
+            <if test="windowEmpNum != null">#{windowEmpNum},</if>
+            <if test="ticketStatus != null">#{ticketStatus},</if>
+            <if test="userName != null">#{userName},</if>
+            <if test="userMobile != null">#{userMobile},</if>
+            <if test="userCardNumber != null">#{userCardNumber},</if>
+            <if test="appointmentTime != null">#{appointmentTime},</if>
+            <if test="userAddress != null">#{userAddress},</if>
+            <if test="userSex != null">#{userSex},</if>
+            <if test="userPhotoPath != null">#{userPhotoPath},</if>
+            <if test="synStatus != null">#{synStatus},</if>
+            <if test="synTime != null">#{synTime},</if>
+            <if test="synUnid != null">#{synUnid},</if>
+            <if test="synUrl != null">#{synUrl},</if>
+            <if test="guid != null">#{guid},</if>
+            <if test="calledStatus != null">#{calledStatus},</if>
+            <if test="leftStatus != null">#{leftStatus},</if>
+            <if test="deptCode != null">#{deptCode},</if>
+            <if test="deptName != null">#{deptName},</if>
+            <if test="windowEmpUnid != null">#{windowEmpUnid},</if>
+            <if test="isApp != null">#{isApp},</if>
+            <if test="queueTimeNum != null">#{queueTimeNum},</if>
+            <if test="windowNum != null">#{windowNum},</if>
+         </trim>
+    </insert>
+
+    <update id="updateQueueTicketInfo" parameterType="QueueTicketInfo">
+        update queue_ticket_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="queueCode != null">queue_code = #{queueCode},</if>
+            <if test="queueName != null">queue_name = #{queueName},</if>
+            <if test="machineCode != null">machine_code = #{machineCode},</if>
+            <if test="siteCode != null">site_code = #{siteCode},</if>
+            <if test="areaCode != null">area_code = #{areaCode},</if>
+            <if test="ticketNumber != null">ticket_number = #{ticketNumber},</if>
+            <if test="queueTime != null">queue_time = #{queueTime},</if>
+            <if test="calledTime != null">called_time = #{calledTime},</if>
+            <if test="waitSecondCount != null">wait_second_count = #{waitSecondCount},</if>
+            <if test="leftTime != null">left_time = #{leftTime},</if>
+            <if test="ticketChannel != null">ticket_channel = #{ticketChannel},</if>
+            <if test="handleSecondCount != null">handle_second_count = #{handleSecondCount},</if>
+            <if test="evaluateStatus != null">evaluate_status = #{evaluateStatus},</if>
+            <if test="evaluateTime != null">evaluate_time = #{evaluateTime},</if>
+            <if test="windowCode != null">window_code = #{windowCode},</if>
+            <if test="windowName != null">window_name = #{windowName},</if>
+            <if test="windowEmpName != null">window_emp_name = #{windowEmpName},</if>
+            <if test="windowEmpNum != null">window_emp_num = #{windowEmpNum},</if>
+            <if test="ticketStatus != null">ticket_status = #{ticketStatus},</if>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="userMobile != null">user_mobile = #{userMobile},</if>
+            <if test="userCardNumber != null">user_card_number = #{userCardNumber},</if>
+            <if test="appointmentTime != null">appointment_time = #{appointmentTime},</if>
+            <if test="userAddress != null">user_address = #{userAddress},</if>
+            <if test="userSex != null">user_sex = #{userSex},</if>
+            <if test="userPhotoPath != null">user_photo_path = #{userPhotoPath},</if>
+            <if test="synStatus != null">syn_status = #{synStatus},</if>
+            <if test="synTime != null">syn_time = #{synTime},</if>
+            <if test="synUnid != null">syn_unid = #{synUnid},</if>
+            <if test="synUrl != null">syn_url = #{synUrl},</if>
+            <if test="guid != null">guid = #{guid},</if>
+            <if test="calledStatus != null">called_status = #{calledStatus},</if>
+            <if test="leftStatus != null">left_status = #{leftStatus},</if>
+            <if test="deptCode != null">dept_code = #{deptCode},</if>
+            <if test="deptName != null">dept_name = #{deptName},</if>
+            <if test="windowEmpUnid != null">window_emp_unid = #{windowEmpUnid},</if>
+            <if test="isApp != null">is_app = #{isApp},</if>
+            <if test="queueTimeNum != null">queue_time_num = #{queueTimeNum},</if>
+            <if test="windowNum != null">window_num = #{windowNum},</if>
+        </trim>
+        where unid = #{unid}
+    </update>
+
+    <delete id="deleteQueueTicketInfoByUnid" parameterType="String">
+        delete from queue_ticket_info where unid = #{unid}
+    </delete>
+
+    <delete id="deleteQueueTicketInfoByUnids" parameterType="String">
+        delete from queue_ticket_info where unid in 
+        <foreach item="unid" collection="array" open="(" separator="," close=")">
+            #{unid}
+        </foreach>
+    </delete>
+
+</mapper>

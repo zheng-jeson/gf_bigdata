@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title-name></title-name>
+		<link rel="stylesheet" th:href="@{/web/css/zz_zykjc/zykjc2.css}">
+		<link rel="stylesheet" th:href="@{/web/fonts/icomoon.css}">
+	</head>
+	<style>
+		/* 底部 */
+		.footer {
+			height: 11.25rem;
+			width: 100%;
+			position: relative;
+			white-space: nowrap;
+			overflow: hidden;
+			margin-top: 0;
+		}
+
+		.footer div {
+			margin: 0 auto;
+			position: absolute;
+			top: 0;
+			width: 100%;
+		}
+
+		.footer div span {
+			width: 100%;
+			text-align: center;
+			line-height: 14.25rem;
+			color: #ffffff;
+			float: left;
+			/* font-size: 3.8rem; */
+			font-size: 2.8rem;
+		}
+	</style>
+	<body>
+		<div id="app">
+			<div class="header">
+				<p class="cn-title">中原龙子湖双创服务中心信息汇总展示</p>
+				<p class="en-title">Information and display of Zhongyuan Longzihu Service Center</p>
+			</div>
+			<div class="content">
+				<!-- 左边 -->
+				<div class="left-content">
+					<div class="left-top">
+						<div class="left-num">
+							<p class="num" id="fetchNum">806</p>
+							<p class="num-bottom">
+								<i class="icon" style="background-color: #3F6DFF;"></i>
+								<span class="title">取号量/个</span>
+							</p>
+						</div>
+						<div class="left-num">
+							<p class="num" id="processNum">777</p>
+							<p class="num-bottom">
+								<i class="icon" style="background-color: #81cca1;"></i>
+								<span class="title">办理量/个</span>
+							</p>
+						</div>
+						<div class="left-num">
+							<p class="num" id="avgWaitTime">3</p>
+							<p class="num-bottom">
+								<i class="icon" style="background-color: #d2ff00;"></i>
+								<span class="title">平均等待/分</span>
+							</p>
+						</div>
+						<div class="left-num">
+							<p class="num" id="avgProcessTime">1</p>
+							<p class="num-bottom">
+								<i class="icon" style="background-color: #da3e39;"></i>
+								<span class="title">平均办理/分</span>
+							</p>
+						</div>
+					</div>
+					<div class="left-two">
+						<p class="title-name">窗口办件量排行</p>
+						<!-- 图表区 -->
+						<div class="chart" id="windowRank">
+						</div>
+					</div>
+					<div class="left-three">
+						<p class="title-name">取号检测</p>
+						<!-- 图表区 -->
+						<div class="chart" id="fetch-monitor">
+						</div>
+					</div>
+					<div class="left-four">
+						<p class="title-name">本月"最"排行</p>
+						<div class="rank-box">
+							<div class="rank">
+								<p class="rank-title" id="maxHandleItem">人才服务</p>
+								<div class="rank-bottom">
+									<i class="icon-cup1"></i>
+									<p>办件量最多业务</p>
+								</div>
+							</div>
+							<div class="rank">
+								<p class="rank-title" id="maxHandleWindow">C20</p>
+								<div class="rank-bottom">
+									<i class="icon-cup1"></i>
+									<p>办件量最多窗口</p>
+								</div>
+							</div>
+							<div class="rank">
+								<p class="rank-title" id="busyWorkDay">周一</p>
+								<div class="rank-bottom">
+									<i class="icon-clock"></i>
+									<p>最忙工作日</p>
+								</div>
+							</div>
+							<div class="rank">
+								<p class="rank-title" d="freeWorkDay">周三</p>
+								<div class="rank-bottom">
+									<i class="icon-clock"></i>
+									<p>最闲工作日</p>
+								</div>
+							</div>
+							<div class="rank">
+								<p class="rank-title" id="busyTimeInterval">10:00-11:00</p>
+								<div class="rank-bottom">
+									<i class="icon-clock"></i>
+									<p>最忙时间段</p>
+								</div>
+							</div>
+							<div class="rank">
+								<p class="rank-title" id="freeTimeInterval">16:00-17:00</p>
+								<div class="rank-bottom">
+									<i class="icon-clock"></i>
+									<p>最闲时间段</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="left-five">
+						<p class="title-name">工作日办件排行</p>
+						<!-- 图表区 -->
+						<div class="chart" id="weekRank">
+
+						</div>
+					</div>
+				</div>
+				<!-- 右边-->
+				<div class="right-content">
+					<div class="right-top">
+						<!-- 筛选 -->
+						<div class="filter">
+							<span data-key="day365">365天</span>
+							<i></i>
+							<span data-key="day90">90天</span>
+							<i></i>
+							<span data-key="day30">30天</span>
+							<i></i>
+							<span data-key="day1" class="active">24小时</span>
+						</div>
+						<!-- 数据 -->
+						<div class="data">
+							<div class="item">
+								<p class="right-top-p">0</p>
+								<span>
+									<i class="icon-dot" style="background-color: #ed3f35;"></i>
+									<p>接待量/人次</p>
+								</span>
+							</div>
+							<div class="item">
+								<p class="right-top-p">0</p>
+								<span>
+									<i class="icon-dot" style="background-color: #eacf19;"></i>
+									<p>受理量/人次</p>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="right-two">
+						<p class="title-name">最多跑一次</p>
+						<div class="more-one">
+							<div class="min-div">
+								<p class="num right-two-ratio">0%</p>
+								<p class="min-bottom">
+									<i class="icon-clock"></i>
+									<span class="min">
+										<3min </span>
+								</p>
+							</div>
+							<div class="min-div">
+								<p class="num right-two-ratio">0%</p>
+								<p class="min-bottom">
+									<i class="icon-clock"></i>
+									<span class="min">3-30min</span>
+								</p>
+							</div>
+							<div class="min-div">
+								<p class="num right-two-ratio">0%</p>
+								<p class="min-bottom">
+									<i class="icon-clock"></i>
+									<span class="min">>30min</span>
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="right-three channel panel">
+						<p class="title-name">年龄比例</p>
+						<!-- 图表区 -->
+						<div class="chart" id="age">
+						</div>
+					</div>
+					<div class="right-four quarter panel">
+						<p class="title-name">性别比例</p>
+						<!-- 图表区 -->
+						<div class="chart" id="sex">
+						</div>
+					</div>
+					<div class="item-rank">
+						<div class='inner'>
+							<p>事项排行</p>
+							<!-- 筛选 -->
+							<div class="filter">
+								<span data-key="handleNum" class="active">办件量</span>
+								<i></i>
+								<span data-key="handleTime">办件时长</span>
+								<i></i>
+								<span data-key="waitTime">等待时长</span>
+							</div>
+						</div>
+
+						<!-- 数据 -->
+						<div class="item-content">
+							<div class="head" id="itemRankHead">
+								<span class="col1">序号</span>
+								<span class="col">事项名称</span>
+								<span class="col">办理量</span>
+							</div>
+							<div class="marquee-view">
+								<div class="marquee" id="itemRankContent">
+									<div class="row">
+										<span class="col1">1</span>
+										<span class="col">人才服务</span>
+										<span class="col">9</span>
+									</div>
+									<div class="row">
+										<span class="col1">2</span>
+										<span class="col">市场监管</span>
+										<span class="col">7</span>
+									</div>
+									<div class="row">
+										<span class="col1">3</span>
+										<span class="col">社保医保</span>
+										<span class="col">6</span>
+									</div>
+									<div class="row">
+										<span class="col1">4</span>
+										<span class="col">公积金</span>
+										<span class="col">5</span>
+									</div>
+									<div class="row">
+										<span class="col1">5</span>
+										<span class="col">税务综合</span>
+										<span class="col">4</span>
+									</div>
+									<div class="row">
+										<span class="col1">6</span>
+										<span class="col">照章同取</span>
+										<span class="col">3</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer">
+				<div>
+					<!--<span>
+						中原龙子湖双创服务中心办事大厅欢迎您。
+						温馨提示：疫情防控期间，请大家戴口罩、勤洗手、少出门、不聚众、不聚餐；抗击疫情，人人有责。
+						作息时间：上午:9:00-12:00 下午:13:00-17:00
+					</span>-->
+					<span>
+						技术支持--港发电子
+					</span>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script th:src="@{/web/js/jquery.js}" type="text/javascript" charset="utf-8"></script>
+	<script th:src="@{/web/js/echarts.min.js}"></script>
+	<script th:src="@{/web/js/zz_zykjc/zykjc.js}" type="text/javascript" charset="utf-8"></script>
+	<!--<script th:src="@{/web/js/textscroll.js}" type="text/javascript" charset="utf-8"></script>-->
+
+	<!-- <script src="js/china.js"></script> -->
+	<!-- <script src="js/mymap.js"></script> -->
+	<script th:inline="javascript" type="text/javascript" charset="utf-8">
+		var siteCode = [[${siteCode}]];
+		sessionStorage.setItem("siteCode",siteCode);
+		console.log(siteCode)
+	</script>
+</html>

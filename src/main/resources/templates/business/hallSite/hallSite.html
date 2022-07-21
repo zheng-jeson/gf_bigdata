@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('大厅网点列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>大厅名称：</label>
+                                <input type="text" name="siteName"/>
+                            </li>
+                            <li>
+                                <label>网点标识：</label>
+                                <input type="text" name="siteCode"/>
+                            </li>
+                            <li>
+                                <label>电话：</label>
+                                <input type="text" name="sitePhone"/>
+                            </li>
+                            <li>
+                                <label>地址：</label>
+                                <input type="text" name="siteAddress"/>
+                            </li>
+                            <li>
+                                <label>坐标Y：</label>
+                                <input type="text" name="siteCoordinateY"/>
+                            </li>
+                            <li>
+                                <label>坐标X：</label>
+                                <input type="text" name="siteCoordinateX"/>
+                            </li>
+                            <li>
+                                <label>区划代码：</label>
+                                <input type="text" name="areaCode"/>
+                            </li>
+                            <li>
+                                <label>是否发送短信提醒：</label>
+                                <input type="text" name="isSendMessage"/>
+                            </li>
+                            <li>
+                                <label>上班时间：</label>
+                                <input type="text" name="siteAccepttime"/>
+                            </li>
+                            <li>
+                                <label>修改时间：</label>
+                                <input type="text" class="time-input" placeholder="请选择修改时间" name="modifyTime"/>
+                            </li>
+                            <li>
+                                <label>是否删除：</label>
+                                <input type="text" name="isDel"/>
+                            </li>
+                            <li>
+                                <label>数据来源；custom-自定义，zs-正数，以此类推：</label>
+                                <input type="text" name="sourceFlag"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="business:hallSite:add">
+                    <i class="fa fa-plus"></i> 添加
+                </a>
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="business:hallSite:edit">
+                    <i class="fa fa-edit"></i> 修改
+                </a>
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="business:hallSite:remove">
+                    <i class="fa fa-remove"></i> 删除
+                </a>
+                <a class="btn btn-warning" onclick="importHallSite()" shiro:hasPermission="business:hallSite:import">
+                    <i class="fa fa-upload"></i> 导入
+                </a>
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="business:hallSite:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('business:hallSite:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('business:hallSite:remove')}]];
+        var prefix = ctx + "business/hallSite";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "大厅网点",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'unid',
+                    title: '主键',
+                    visible: false
+                },
+                {
+                    field: 'siteName',
+                    title: '大厅名称'
+                },
+                {
+                    field: 'siteCode',
+                    title: '网点标识'
+                },
+                {
+                    field: 'sitePhone',
+                    title: '电话'
+                },
+                {
+                    field: 'siteAddress',
+                    title: '地址'
+                },
+                {
+                    field: 'siteCoordinateY',
+                    title: '坐标Y'
+                },
+                {
+                    field: 'siteCoordinateX',
+                    title: '坐标X'
+                },
+                {
+                    field: 'areaCode',
+                    title: '区划代码'
+                },
+                {
+                    field: 'isSendMessage',
+                    title: '是否发送短信提醒',
+                    formatter: function(value, item, index) {
+                        if (item.isDel == '0') {
+                            return '<span class="label label-danger">不发短信</span>';
+                        }
+                        else if (item.isDel == '1') {
+                            return '<span class="label label-success">发送短信</span>';
+                        }
+                        else {
+                            return '<span class="label label-warning">未定义</span>';
+                        }
+                    }
+                },
+                {
+                    field: 'remark',
+                    title: '大厅描述',
+                    visible: false
+                },
+                {
+                    field: 'siteAccepttime',
+                    title: '上班时间'
+                },
+                {
+                    field: 'siteIntroduction',
+                    title: '大厅简介',
+                    visible: false
+                },
+                {
+                    field: 'modifyTime',
+                    title: '修改时间'
+                },
+                {
+                    field: 'isDel',
+                    title: '是否删除',
+                    formatter: function(value, item, index) {
+                        if (item.isDel == '0') {
+                            return '<span class="label label-success">未删除</span>';
+                        }
+                        else if (item.isDel == '1') {
+                            return '<span class="label label-danger">删除</span>';
+                        }
+                        else {
+                            return '<span class="label label-warning">未知</span>';
+                        }
+                    }
+                },
+                {
+                    field: 'sourceFlag',
+                    title: '数据来源',
+                    formatter: function(value, item, index) {
+                        if (item.sourceFlag == 'custom') {
+                            return '<span class="label label-success">自定义</span>';
+                        }
+                        else if (item.sourceFlag == 'zs') {
+                            return '<span class="label label-primary">智慧大厅</span>';
+                        }
+                        else {
+                            return '<span class="label label-warning">其它</span>';
+                        }
+                    }
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.unid + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.unid + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+
+        /*导入网点信息*/
+        function importHallSite(){
+            $.operate.get( "/pull/pullHallSite?hallCode="+value);
+        }
+    </script>
+</body>
+</html>

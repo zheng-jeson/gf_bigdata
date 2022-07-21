@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.business.machine.mapper.MachineMapper">
+    
+    <resultMap type="Machine" id="MachineResult">
+        <result property="unid"    column="unid"    />
+        <result property="machineName"    column="machine_name"    />
+        <result property="machineCode"    column="machine_code"    />
+        <result property="siteUnid"    column="site_unid"    />
+        <result property="siteName"    column="site_name"    />
+        <result property="siteCode"    column="site_code"    />
+        <result property="areaCode"    column="area_code"    />
+        <result property="floorNumber"    column="floor_number"    />
+        <result property="remark"    column="remark"    />
+        <result property="productNumber"    column="product_number"    />
+        <result property="placeDate"    column="place_date"    />
+        <result property="contactMan"    column="contact_man"    />
+        <result property="contactTel"    column="contact_tel"    />
+        <result property="company"    column="company"    />
+        <result property="macAddress"    column="mac_address"    />
+        <result property="isPush"    column="is_push"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="modifyTime"    column="modify_time"    />
+        <result property="machineType"    column="machine_type"    />
+    </resultMap>
+
+    <sql id="selectMachineVo">
+        select unid, machine_name, machine_code, site_unid, site_name, site_code, area_code, floor_number, remark, product_number, place_date, contact_man, contact_tel, company, mac_address, is_push, create_time, modify_time, machine_type from buss_machine
+    </sql>
+
+    <select id="selectMachineList" parameterType="Machine" resultMap="MachineResult">
+        <include refid="selectMachineVo"/>
+        <where>  
+            <if test="machineName != null  and machineName != ''"> and machine_name like concat('%', #{machineName}, '%')</if>
+            <if test="machineCode != null  and machineCode != ''"> and machine_code = #{machineCode}</if>
+            <if test="siteUnid != null  and siteUnid != ''"> and site_unid = #{siteUnid}</if>
+            <if test="siteName != null  and siteName != ''"> and site_name like concat('%', #{siteName}, '%')</if>
+            <if test="siteCode != null  and siteCode != ''"> and site_code = #{siteCode}</if>
+            <if test="areaCode != null  and areaCode != ''"> and area_code = #{areaCode}</if>
+            <if test="floorNumber != null "> and floor_number = #{floorNumber}</if>
+            <if test="productNumber != null  and productNumber != ''"> and product_number = #{productNumber}</if>
+            <if test="placeDate != null "> and place_date = #{placeDate}</if>
+            <if test="contactMan != null  and contactMan != ''"> and contact_man = #{contactMan}</if>
+            <if test="contactTel != null  and contactTel != ''"> and contact_tel = #{contactTel}</if>
+            <if test="company != null  and company != ''"> and company = #{company}</if>
+            <if test="macAddress != null  and macAddress != ''"> and mac_address = #{macAddress}</if>
+            <if test="isPush != null "> and is_push = #{isPush}</if>
+            <if test="modifyTime != null "> and modify_time = #{modifyTime}</if>
+            <if test="machineType != null  and machineType != ''"> and machine_type = #{machineType}</if>
+        </where>
+    </select>
+    
+    <select id="selectMachineByUnid" parameterType="String" resultMap="MachineResult">
+        <include refid="selectMachineVo"/>
+        where unid = #{unid}
+    </select>
+        
+    <insert id="insertMachine" parameterType="Machine">
+        insert into buss_machine
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="unid != null">unid,</if>
+            <if test="machineName != null">machine_name,</if>
+            <if test="machineCode != null">machine_code,</if>
+            <if test="siteUnid != null">site_unid,</if>
+            <if test="siteName != null">site_name,</if>
+            <if test="siteCode != null">site_code,</if>
+            <if test="areaCode != null">area_code,</if>
+            <if test="floorNumber != null">floor_number,</if>
+            <if test="remark != null">remark,</if>
+            <if test="productNumber != null">product_number,</if>
+            <if test="placeDate != null">place_date,</if>
+            <if test="contactMan != null">contact_man,</if>
+            <if test="contactTel != null">contact_tel,</if>
+            <if test="company != null">company,</if>
+            <if test="macAddress != null">mac_address,</if>
+            <if test="isPush != null">is_push,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="modifyTime != null">modify_time,</if>
+            <if test="machineType != null">machine_type,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="unid != null">#{unid},</if>
+            <if test="machineName != null">#{machineName},</if>
+            <if test="machineCode != null">#{machineCode},</if>
+            <if test="siteUnid != null">#{siteUnid},</if>
+            <if test="siteName != null">#{siteName},</if>
+            <if test="siteCode != null">#{siteCode},</if>
+            <if test="areaCode != null">#{areaCode},</if>
+            <if test="floorNumber != null">#{floorNumber},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="productNumber != null">#{productNumber},</if>
+            <if test="placeDate != null">#{placeDate},</if>
+            <if test="contactMan != null">#{contactMan},</if>
+            <if test="contactTel != null">#{contactTel},</if>
+            <if test="company != null">#{company},</if>
+            <if test="macAddress != null">#{macAddress},</if>
+            <if test="isPush != null">#{isPush},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="modifyTime != null">#{modifyTime},</if>
+            <if test="machineType != null">#{machineType},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMachine" parameterType="Machine">
+        update buss_machine
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="machineName != null">machine_name = #{machineName},</if>
+            <if test="machineCode != null">machine_code = #{machineCode},</if>
+            <if test="siteUnid != null">site_unid = #{siteUnid},</if>
+            <if test="siteName != null">site_name = #{siteName},</if>
+            <if test="siteCode != null">site_code = #{siteCode},</if>
+            <if test="areaCode != null">area_code = #{areaCode},</if>
+            <if test="floorNumber != null">floor_number = #{floorNumber},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="productNumber != null">product_number = #{productNumber},</if>
+            <if test="placeDate != null">place_date = #{placeDate},</if>
+            <if test="contactMan != null">contact_man = #{contactMan},</if>
+            <if test="contactTel != null">contact_tel = #{contactTel},</if>
+            <if test="company != null">company = #{company},</if>
+            <if test="macAddress != null">mac_address = #{macAddress},</if>
+            <if test="isPush != null">is_push = #{isPush},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="modifyTime != null">modify_time = #{modifyTime},</if>
+            <if test="machineType != null">machine_type = #{machineType},</if>
+        </trim>
+        where unid = #{unid}
+    </update>
+
+    <delete id="deleteMachineByUnid" parameterType="String">
+        delete from buss_machine where unid = #{unid}
+    </delete>
+
+    <delete id="deleteMachineByUnids" parameterType="String">
+        delete from buss_machine where unid in 
+        <foreach item="unid" collection="array" open="(" separator="," close=")">
+            #{unid}
+        </foreach>
+    </delete>
+
+</mapper>
